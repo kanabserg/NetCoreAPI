@@ -38,5 +38,10 @@ namespace NetCoreAPI.Data
 
             _context.Commands.Add(command);
         }
+
+        public void UpdateCommand(Command command)
+        {
+            //Nothing
+        }
     }
 }

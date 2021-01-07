@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NetCoreAPI.DTOs
 {
-    public class CommandCreateDto
+    public class CommandUpdateDto
     {
         [Required]
         [MaxLength(250)]
@@ -10,7 +10,7 @@ namespace NetCoreAPI.DTOs
         
         [Required]
         public string HowTo { get; set; }
-        
+         
         [Required]
         public string Platform { get; set; }
     }
