@@ -43,5 +43,15 @@ namespace NetCoreAPI.Data
         {
             //Nothing
         }
+
+        public void DeleteCommand(Command command)
+        {
+            if (command == null)
+            {
+                throw new ArgumentException(null, nameof(command));
+            }
+
+            _context.Commands.Remove(command); 
+        }
     }
 }
