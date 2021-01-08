@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NetCoreAPI.Data;
+using Newtonsoft.Json.Serialization;
 
 namespace NetCoreAPI
 {
@@ -32,7 +33,10 @@ namespace NetCoreAPI
             services.AddDbContext<CommanderContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             services.AddScoped<ICommanderRepository, SqlCommanderRepository>();
 
