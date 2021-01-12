@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NetCoreAPI.Data;
 using NetCoreAPI.DTOs;
 using NetCoreAPI.Model;
@@ -14,15 +15,18 @@ namespace NetCoreAPI.Controllers
     {
         private readonly ICommanderRepository _repository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CommandsController> _logger;
 
-        public CommandsController(ICommanderRepository repository, IMapper mapper)
+        public CommandsController(ICommanderRepository repository, IMapper mapper, ILogger<CommandsController> logger)
         {
             _repository = repository;
             _mapper = mapper;
+            _logger = logger;
         }
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
         {
+            _logger.LogInformation("Get All Commands Call");
             var commandItems = _repository.GetAllCommands();
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
         }

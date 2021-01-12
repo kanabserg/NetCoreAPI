@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NetCoreAPI.Data;
 using Newtonsoft.Json.Serialization;
+using Serilog;
 
 namespace NetCoreAPI
 {
@@ -60,6 +61,8 @@ namespace NetCoreAPI
 
             app.UseHttpsRedirection();
 
+            app.UseSerilogRequestLogging();
+            
             app.UseRouting();
 
             app.UseAuthorization();
